@@ -22,13 +22,6 @@ a {
   font-size: 1 rem;
 }
 
-h3 {
-  font-size: 2.8rem;
-}
-button {
-  font-size: 1.8rem;
-}
-
 nav {
   background: black;
   color: white;
@@ -70,23 +63,71 @@ body {
 }
 
 img {
-  margin-right: 90%;
-  padding-bottom: 5%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+.one {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  left: 30%;
+  border-bottom: 10pcs solid white;
+}
+.two {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  right: 30%;
+  border-bottom: 10pcx solid white;
+  margin-bottom: 2rem;
 }
 
-.Sia {
-  margin-right: 90%;
-  padding-bottom: 5%;
+.three {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  left: 20%;
+  top: 75%;
+  border-bottom: 10pcs solid white;
+  margin-bottom: 2rem;
+}
+.four {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  border-bottom: 10pcs solid white;
+  margin-bottom: 2rem;
 }
 
-.Daniel {
-  margin-right: 90%;
+.five {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 75%;
+  left: 80%;
+  border-bottom: 10pcs solid white;
+  margin-bottom: 2rem;
+}
 
-  margin-bottom: 100;
+.six {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 100%;
+  left: 30%;
+  border-bottom: 10pcs solid white;
+  margin-bottom: 2rem;
+}
 
-  padding-bottom: 5%;
-
-  block-size: 5%;
-
-  size: 5%;
+.seven {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 100%;
+  right: 30%;
+  border-bottom: 10pcs solid white;
+  margin-bottom: 2rem;
 }
