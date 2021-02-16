@@ -22,13 +22,6 @@ a {
   font-size: 1 rem;
 }
 
-h3 {
-  font-size: 2.8rem;
-}
-button {
-  font-size: 1.8rem;
-}
-
 nav {
   background: black;
   color: white;
@@ -65,13 +58,12 @@ nav li {
   border-radius: 1rem;
 }
 
-img {
-  border-radius: 10rem;
-  margin: 1.5rem;
-  margin-top: 3rem;
-}
-
-html,
 body {
   height: 50%;
+}
+
+img {
+  border-radius: 10rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
