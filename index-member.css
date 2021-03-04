@@ -165,3 +165,7 @@ h1:after {
 element.style {
   margin-left: 100px;
 }
+
+img {
+  border-radius: 0%;
+}
