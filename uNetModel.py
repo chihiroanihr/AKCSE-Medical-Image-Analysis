@@ -1,70 +1,53 @@
 import tensorflow as tf
-#to import tensorflow use python 3.8 
-#TODO: More research on kernal_initializer, padding and dropout values needed
 
-def unet(weight = None, input_size = (572,572,3)):
-    inputs = tf.keras.layers.Input(input_size)
-    adj_inputs = tf.keras.layers.Lambda(lambda x: x / 255)(inputs)
+pretrained_weights = None
+input_size = (256,256,1)
 
-    #Contraction path (ENCODER): convolutional + max pooling
-    c1 = tf.keras.layers.Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(adj_inputs)
-    c1 = tf.keras.layers.Dropout(0.1)(c1)
-    c1 = tf.keras.layers.Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c1)
-    p1 = tf.keras.layers.MaxPooling2D((2, 2))(c1)
+#Build the model
+inputs = tf.keras.layers.Input(input_size)
+adj_inputs = tf.keras.layers.Lambda(lambda x: x / 255)(inputs)
 
-    c2 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(p1)
-    c2 = tf.keras.layers.Dropout(0.1)(c2)
-    c2 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c2)
-    p2 = tf.keras.layers.MaxPooling2D((2, 2))(c2)
-    
-    c3 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(p2)
-    c3 = tf.keras.layers.Dropout(0.2)(c3)
-    c3 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c3)
-    p3 = tf.keras.layers.MaxPooling2D((2, 2))(c3)
-    
-    c4 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(p3)
-    c4 = tf.keras.layers.Dropout(0.2)(c4)
-    c4 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c4)
-    p4 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(c4)
-    
-    c5 = tf.keras.layers.Conv2D(1024, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(p4)
-    c5 = tf.keras.layers.Dropout(0.3)(c5)
-    c5 = tf.keras.layers.Conv2D(1024, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c5)
+conv1 = tf.keras.layers.Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(adj_inputs)
+conv1 = tf.keras.layers.Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv1)
+pool1 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv1)
+conv2 = tf.keras.layers.Conv2D(128, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(pool1)
+conv2 = tf.keras.layers.Conv2D(128, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv2)
+pool2 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv2)
+conv3 = tf.keras.layers.Conv2D(256, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(pool2)
+conv3 = tf.keras.layers.Conv2D(256, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv3)
+pool3 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv3)
+conv4 = tf.keras.layers.Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(pool3)
+conv4 = tf.keras.layers.Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv4)
+drop4 = tf.keras.layers.Dropout(0.5)(conv4)
+pool4 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(drop4)
 
-    #Expansive path (DECODER)
-    u6 = tf.keras.layers.Conv2DTranspose(512, (2, 2), strides=(2, 2), padding='same')(c5)
-    u6 = tf.keras.layers.concatenate([u6, c4])
-    c6 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(u6)
-    c6 = tf.keras.layers.Dropout(0.2)(c6)
-    c6 = tf.keras.layers.Conv2D(512, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c6)
-    
-    u7 = tf.keras.layers.Conv2DTranspose(256, (2, 2), strides=(2, 2), padding='same')(c6)
-    u7 = tf.keras.layers.concatenate([u7, c3])
-    c7 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(u7)
-    c7 = tf.keras.layers.Dropout(0.2)(c7)
-    c7 = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c7)
-    
-    u8 = tf.keras.layers.Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(c7)
-    u8 = tf.keras.layers.concatenate([u8, c2])
-    c8 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(u8)
-    c8 = tf.keras.layers.Dropout(0.1)(c8)
-    c8 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c8)
-    
-    u9 = tf.keras.layers.Conv2DTranspose(64, (2, 2), strides=(2, 2), padding='same')(c8)
-    u9 = tf.keras.layers.concatenate([u9, c1], axis=3)
-    c9 = tf.keras.layers.Conv2D(64 (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(u9)
-    c9 = tf.keras.layers.Dropout(0.1)(c9)
-    c9 = tf.keras.layers.Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c9)
-    C9 = tf.keras.layers.Conv2D(2, (3,3), activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(c9)
-    outputs = tf.keras.layers.Conv2D(1, (1,1), activation = 'sigmoid')(c9)
+conv5 = tf.keras.layers.Conv2D(1024, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(pool4)
+conv5 = tf.keras.layers.Conv2D(1024, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv5)
+drop5 = tf.keras.layers.Dropout(0.5)(conv5)
 
-    model = tf.keras.Model(inputs=[inputs], outputs=[outputs])
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    model.summary()
-   
-    #model.summary()
+up6 = tf.keras.layers.Conv2D(512, 2, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(tf.keras.layers.UpSampling2D(size = (2,2))(drop5))
+merge6 = tf.keras.layers.concatenate([drop4,up6], axis = 3)
+conv6 = tf.keras.layers.Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(merge6)
+conv6 = tf.keras.layers.Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv6)
 
-    if(weight):
-    	model.load_weights(weight)
+up7 = tf.keras.layers.Conv2D(256, 2, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(tf.keras.layers.UpSampling2D(size = (2,2))(conv6))
+merge7 = tf.keras.layers.concatenate([conv3,up7], axis = 3)
+conv7 = tf.keras.layers.Conv2D(256, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(merge7)
+conv7 = tf.keras.layers.Conv2D(256, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv7)
 
-    return model
+up8 = tf.keras.layers.Conv2D(128, 2, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(tf.keras.layers.UpSampling2D(size = (2,2))(conv7))
+merge8 = tf.keras.layers.concatenate([conv2,up8], axis = 3)
+conv8 = tf.keras.layers.Conv2D(128, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(merge8)
+conv8 = tf.keras.layers.Conv2D(128, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv8)
+
+up9 = tf.keras.layers.Conv2D(64, 2, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(tf.keras.layers.UpSampling2D(size = (2,2))(conv8))
+merge9 = tf.keras.layers.concatenate([conv1,up9], axis = 3)
+conv9 = tf.keras.layers.Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(merge9)
+conv9 = tf.keras.layers.Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv9)
+conv9 = tf.keras.layers.Conv2D(2, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv9)
+conv10 = tf.keras.layers.Conv2D(1, 1, activation = 'sigmoid')(conv9)
+
+model = tf.keras.Model(inputs = inputs, outputs = conv10)
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.summary()
