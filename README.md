@@ -10,6 +10,8 @@ The U-Net architecture was inspired by [U-Net: Convolutional Networks for Biomed
 
 #### - Data Scraping
 #### - 2D-to-3D Image Conversion
+#### - Image Formatting
+
 
 ### CNN: Image Clasification
 
