@@ -54,7 +54,7 @@ model.summary()
 
 ################################
 #Modelcheckpoint
-checkpointer = tf.keras.callbacks.ModelCheckpoint('model_for_nuclei.h5', verbose=1, save_best_only=True)
+checkpointer = tf.keras.callbacks.ModelCheckpoint('model_for_sagittal_brain_scan', verbose=1, save_best_only=True)
 
 callbacks = [
         tf.keras.callbacks.EarlyStopping(patience=2, monitor='val_loss'),
