@@ -51,3 +51,15 @@ model = tf.keras.Model(inputs = inputs, outputs = conv10)
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 model.summary()
+
+################################
+#Modelcheckpoint
+checkpointer = tf.keras.callbacks.ModelCheckpoint('model_for_nuclei.h5', verbose=1, save_best_only=True)
+
+callbacks = [
+        tf.keras.callbacks.EarlyStopping(patience=2, monitor='val_loss'),
+        tf.keras.callbacks.TensorBoard(log_dir='logs')]
+
+results = model.fit(X_train, Y_train, validation_split=0.1, batch_size=16, epochs=25, callbacks=callbacks)
+
+####################################
