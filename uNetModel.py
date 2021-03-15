@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 pretrained_weights = None
-input_size = (256,256,1)
+input_size = (512,512,1)
 
 #Build the model
 inputs = tf.keras.layers.Input(input_size)
