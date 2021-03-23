@@ -2,31 +2,40 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+ 
 }
 
 .clear {
   clear: both;
 }
+
+
+
 h1 {
-  font-size: 2.5 rem;
+  font-size: 4 rem;
+  text-transform: uppercase;
 }
 
 h2 {
-  font-size: 3.5 rem;
+  font-size: 4 rem;
   padding: 5 rem;
 }
 
 a {
   color: white;
   text-decoration: none;
-  font-size: 1 rem;
+  font-size: 3 rem;
 }
 
 nav {
   background: black;
   color: white;
   padding: 3rem;
+
 }
+
 
 nav h1 {
   float: left;
@@ -44,8 +53,9 @@ nav li {
 
 .hero-section {
   text-align: center;
-  color: rgb(7, 7, 7);
+  color: black;
   padding: 6rem;
+  font-size: 3rem;
 }
 
 .hero-section button {
@@ -53,7 +63,7 @@ nav li {
   padding: 1rem 4rem;
   background: black;
   border: none;
-  color: white;
+  color: black;
   cursor: pointer;
   border-radius: 1rem;
 }
@@ -67,3 +77,21 @@ img {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+
+
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url(MRI-Study-1280x640.jpeg);
+  background-position: sticky;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 55%
+  ;
+}
+
