@@ -16,6 +16,7 @@
 h1 {
   font-size: 4 rem;
   text-transform: uppercase;
+
 }
 
 h2 {
@@ -70,6 +71,7 @@ nav li {
 
 body {
   height: 50%;
+  
 }
 
 img {
@@ -79,19 +81,17 @@ img {
 }
 
 
-
 section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: url(MRI-Study-1280x640.jpeg);
-  background-position: sticky;
-  background-size: cover;
-  background-position: center;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  opacity: 55%
+  
   ;
 }
+
+
 
