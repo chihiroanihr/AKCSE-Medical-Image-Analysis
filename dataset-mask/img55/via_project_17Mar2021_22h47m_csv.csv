@@ -1,0 +1,2 @@
+filename,file_size,file_attributes,region_count,region_id,region_shape_attributes,region_attributes
+img55.png,272212,"{}",1,0,"{""name"":""polygon"",""all_points_x"":[240,256,277,293,311,329,343,350,344,331,321,321,317,309,284,259,239,222,217,227,218,203,196,204,222],""all_points_y"":[154,155,159,170,180,192,205,224,240,243,238,219,210,196,180,173,171,176,186,194,197,192,175,160,156]}","{}"
