@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{url_for('static', filename='logo.ico')}}">
+    <title>AKCSE Medical Image Analysis</title>
+    <style> 
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.clear {
+  clear: both;
+}
+h1 {
+  font-size: 2.5 rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 30px;
+  text-decoration-line: underline;
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+header {
+  padding: 20px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5 rem;
+}
+
+h3 {
+  font-size: 2.8rem;
+}
+button {
+  font-size: 1.8rem;
+}
+
+nav {
+  color: black;
+  width: 100%;
+  height: 60px;
+  padding-bottom: 7%;
+  background-color: rgb(163, 162, 162);
+}
+
+nav h1 {
+  float: left;
+  color: black;
+  font-size: 30px;
+  line-height: 55px;
+  padding: 25px 20px;
+}
+
+nav ul {
+  float: right;
+  padding-right: 5rem;
+}
+
+nav ul li {
+  float: left;
+  list-style: none;
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  color: black;
+  font-size: 20px;
+  padding: 38px 30px;
+  display: block;
+  text-decoration: none;
+}
+
+nav ul li ul {
+  display: none;
+  position: absolute;
+  background-color: black;
+  padding: 10px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  width: 180px;
+  border-radius: 4px;
+}
+
+nav ul li ul li a {
+  text-align: center;
+  padding: 8px 14px;
+  color: white;
+}
+
+nav ul li ul li a:hover {
+  background-color: rgb(218, 216, 216);
+}
+
+.hero-section h1 {
+  text-align: center;
+  color: rgb(7, 7, 7);
+}
+
+.hero-section button {
+  margin-top: 3rem;
+  padding: 1rem 4rem;
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+html,
+body {
+  height: 50%;
+}
+p {
+  text-align: justify;
+  top: 100%;
+  padding: 5px;
+  padding-bottom: 60px;
+  padding-top: 0px;
+}
+
+</style>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <h1 id="logo"> AKCSE Medical Image Analysis </h1>
+            <ul>
+                <li><a href="{{ url_for('mainPage') }}">Home</a></li>
+                <li><a href="{{ url_for('members') }}">Members</a></li>
+                <li><a>Project</a>
+                    <ul>
+                        <li><a href="{{ url_for('projectDemo') }}">Demo</a></li>
+                        <li><a href="{{ url_for('projectDescription') }}">Project Description</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <section id="main" class="wrapper">
+        <div class="container">
+            <header class="major special">
+                <h2>Project Description</h2>
+                
+             
+            </header>
+
+            <!-- Text -->
+            <section class=hero-section>
+                <h1> Web Development Team</h1>
+                <p> As a front end team we worked on the main website development. 
+                    The website includes the project description, member description along with project simulator page. Using HTML and CSS, we constructed the main structure of the web page. 
+                    For web design we used Javascript. Furthermore, we used Python to receive image input & transfer the received image to the Python program. 
+                    We then displayed the output image/text from the Python to the website and ran the Python program using HTML(website).</p>
+
+                <h1> Data Scraping</h1>
+                <p> Data Scaping Team: Dataset: where you got those data, etc
+                    Data Scraping:
+                    3D to 2D Conversion: 
+                    Data Augmentation:
+                    Image Classification Using CNN:
+                    
+                    We created a data scraping code to automatically download large samples of sagittal MRI images from Google. 
+                    We further filtered out the downloaded files using image classification to find the best test samples. 
+                    3D Medical images in MHA and DICOM format were also analyzed and collected to broaden our sample size for machine learning. 
+                    Slicer was used to view 3D DICOM images and MATLAB was used to convert 3D MHA images into 2D binary images for processing.</p>
+
+                <h1> Image Segmentation</h1>
+                <p> Image segmentation team: Mask layer generation:
+                    U-Net Model:
+                    The U-Net architecture was inspired by U-Net: Convolutional Networks for Biomedical Image Segmentation. 
+                    Between each layer, the size of the layer is reduced to avoid overflow. It is implemented with Keras functional API.</p>
+                    <img src="{{url_for('static', filename='project-description-2.png')}}" height= "500px" width="700px" >
+
+<h1> Image Augmentation</h1>
+<p>Image Augmentation
+Purpose: For massive increase in the scale of datasets that will be used for training/validation/test process during image classification.</p>
+<img src="{{url_for('static', filename='project-description-1.png')}}" height= "500px" width="700px" >
+
+<p>→ It is necessary to create transformed versions of original images, such as by applying image flip/rotation, changing image contrast, etc.
+
+Tools: Augmenting data using PyTorch (open source machine learning library)
+→ Torchvision.transforms modules are used for image transformation.
+Link: https://pytorch.org/
+
+Procedure:
+Load Data
+→ Suppose that datasets are given (from (2) and (3)) with original brain images and its corresponding masked images. Datasets must be already splitted into training/validation/test set and the only training set (and possibly validation set) will be used for data augmentation.
+Create a new class that takes a Dataset argument where the Dataset refers to PyTorch’s Dataset from torch.utils.data module.
+→ The class should include function transform where data augmentation occurs
+
+Prepare a three (or more) datasets:
+Original datasets (original brain images and its masked images)
+Augmented datasets 1
+Augmented datasets 2
+… (As many augmented datasets as desired)
+
+Initialize each dataset by passing self, the parameter for image paths, and the parameter for masked(segmented) image path from training set, into the class.
+During the transformation (from the transform function within the class):
+Images (both original brain image and its masked image) are resized
+Images are randomly flipped (vertically and horizontally), and randomly rotated. 
+(!!! Brain images and its corresponding masked images are transformed/augmented in a same fashion)
+ Images are converted into tensor form, and normalized
+ 
+The class returns both transformed brain images and its masked images
+Create three (or more) DataLoader objects and insert each transformed datasets (from 3) as an argument for the object.
+→ DataLoader class is designed to iterate all the values in the dataset and returns its tuples, instead of using for-loops to iterate over the dataset.
+Save images as a png format from DataLoaders into directory
+→ Make a large folder for storing augmented results. Create subfolders for every different brain image. Inside each subfolders, store:
+Original brain image
+Original brain masked image
+Augmented(1) brain image
+Augmented(1) brain masked image
+Augmented(2) brain image
+Augmented(2) brain masked image</p>
+
+
+</section>
+           
+
+</body>
+</html>
+
+
+
