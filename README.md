@@ -10,8 +10,7 @@
 ## Data Augmentation:
 - Purpose: the massive increase in the scale of datasets that will be used for training/validation/test process for CNN model and U-Net architecture.
 - Transformed versions of the original image dataset are created by applying image flip/rotation, changing image contrast, etc.
-![Data Augmentation](webDev/static/project-description-1.png)
-
+<img src="webDev/static/project-description-1.png" width="650" height="450">
 
 # Brain Mapping
 
@@ -20,7 +19,7 @@
 
 ## Brain Mapping (Image Segmentation):
 - U-Net architecture is used for brain mapping. The U-Net architecture was inspired by [U-Net:Convolutional Networks for Biomedical Image Segmentation.](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/) Between each layer, the size of the layer is reduced to avoid overflow.
-![U-Net: Convolutional Networks for Biomedical Image Segmentation](webDev/static/project-description-2.png)
+<img src="webDev/static/project-description-2.png" width="650" height="450">
 
 
 # Tumor Detection & Classification
