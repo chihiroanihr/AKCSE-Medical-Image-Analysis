@@ -29,7 +29,7 @@
 ## Tumor Detection & Classification:
 - Through CNN model image classification, the given image can be classified as one of the following: no tumor, glioma, meningioma, and pituitary.
 
-## Web Application
+# Web Application
 - Application is created using Flask and it is deployed on AWS (tba maybe Heroku??).
 
 
