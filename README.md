@@ -19,7 +19,7 @@
 - User input is validified through image classification using the CNN model. Only a valid type of image, sagittal view of brain MRI, can be used for brain mapping.
 
 ## Brain Mapping (Image Segmentation):
-- U-Net architecture is used for brain mapping. The U-Net architecture was inspired by [U-Net:](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/) [Convolutional Networks for Biomedical Image Segmentation.](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/) Between each layer, the size of the layer is reduced to avoid overflow.
+- U-Net architecture is used for brain mapping. The U-Net architecture was inspired by [U-Net:Convolutional Networks for Biomedical Image Segmentation.](https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/) Between each layer, the size of the layer is reduced to avoid overflow.
 ![U-Net: Convolutional Networks for Biomedical Image Segmentation](webDev/static/project-description-2.png)
 
 
